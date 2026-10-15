@@ -1,0 +1,29 @@
+x-assistant: &assistant
+  build: .
+  image: ai-support-assistant:0.1.0
+  env_file:
+    - path: .env
+      required: false
+  volumes:
+    - data:/data
+  restart: unless-stopped
+
+services:
+  api:
+    <<: *assistant
+    ports:
+      - "8000:8000"
+
+  telegram:
+    <<: *assistant
+    command: ["telegram"]
+    profiles: ["telegram"]
+
+  ingest:
+    <<: *assistant
+    command: ["ingest", "/app/knowledge_base"]
+    profiles: ["tools"]
+    restart: "no"
+
+volumes:
+  data:
