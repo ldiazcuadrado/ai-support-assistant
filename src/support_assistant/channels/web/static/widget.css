@@ -1,0 +1,166 @@
+.sa-widget {
+  --sa-accent: #1f6feb;
+  --sa-bg: #ffffff;
+  --sa-fg: #1f2328;
+  --sa-muted: #656d76;
+  --sa-border: #d0d7de;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2147483000;
+  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--sa-fg);
+}
+
+.sa-widget *,
+.sa-widget *::before,
+.sa-widget *::after {
+  box-sizing: border-box;
+}
+
+.sa-launcher {
+  display: block;
+  margin-left: auto;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--sa-accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.sa-panel {
+  display: flex;
+  flex-direction: column;
+  width: min(380px, calc(100vw - 40px));
+  height: min(560px, calc(100vh - 100px));
+  margin-bottom: 12px;
+  border: 1px solid var(--sa-border);
+  border-radius: 12px;
+  background: var(--sa-bg);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+}
+
+.sa-panel[hidden] {
+  display: none;
+}
+
+.sa-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--sa-accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+.sa-close {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.sa-messages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sa-message {
+  max-width: 85%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: #f0f2f5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.sa-message.sa-user {
+  align-self: flex-end;
+  background: var(--sa-accent);
+  color: #fff;
+}
+
+.sa-message.sa-operator {
+  border-left: 3px solid var(--sa-accent);
+}
+
+.sa-message.sa-error {
+  background: #ffebe9;
+  color: #82071e;
+}
+
+.sa-message.sa-pending .sa-text::after {
+  content: "\2026";
+  color: var(--sa-muted);
+}
+
+.sa-sources {
+  margin: 8px 0 0;
+  padding: 8px 0 0;
+  border-top: 1px solid var(--sa-border);
+  list-style: none;
+  color: var(--sa-muted);
+  font-size: 12px;
+}
+
+.sa-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--sa-border);
+}
+
+.sa-input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid var(--sa-border);
+  border-radius: 8px;
+  font: inherit;
+  resize: none;
+}
+
+.sa-send {
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--sa-accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sa-send:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.sa-widget :focus-visible {
+  outline: 2px solid var(--sa-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sa-panel {
+    animation: sa-in 0.15s ease-out;
+  }
+}
+
+@keyframes sa-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
